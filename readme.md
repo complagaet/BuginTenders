@@ -14,7 +14,7 @@ npm install -g yarn
 
 ```bash
 git clone https://github.com/complagaet/BuginTenders.git
-cd sits
+cd BuginTenders
 
 yarn install
 ```

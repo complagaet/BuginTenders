@@ -1,0 +1,24 @@
+{
+    "name": "bugintenders",
+    "version": "1.0.0",
+    "main": "index.js",
+    "author": "ertensabaq...",
+    "scripts": {
+        "dev": "concurrently \"yarn workspace @bugintenders/frontend dev\" \"yarn workspace @bugintenders/backend dev\"",
+        "build": "concurrently \"yarn workspace @bugintenders/frontend build\"",
+        "start": "",
+        "format": "prettier --write .",
+        "clean": "rimraf --glob \"**/node_modules\" \"**/.next\""
+    },
+    "workspaces": [
+        "./packages/*"
+    ],
+    "license": "ISC",
+    "description": "",
+    "dependencies": {
+        "concurrently": "^9.2.0",
+        "prettier": "^3.6.2",
+        "rimraf": "^6.0.1"
+    },
+    "private": true
+}

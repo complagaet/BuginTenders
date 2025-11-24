@@ -11,6 +11,7 @@ import isNotBanned from './middleware/isNotBanned.js';
 import AuthRoutes from './routes/Auth.js';
 import AdminRoutes from './routes/Admin.js';
 import UserRoutes from './routes/User.js';
+import SearchRoutes from './routes/ProductSearch.js';
 
 const PORT = process.env.PORT || 3000;
 const DB_URL = process.env.DB_URL || 'mongodb://localhost:27017';
@@ -38,6 +39,7 @@ app.use(
 );
 
 app.use('/api', AuthRoutes);
+app.use('/api', SearchRoutes);
 app.use('/api', checkToken, AdminRoutes);
 app.use('/api', checkToken, UserRoutes);
 

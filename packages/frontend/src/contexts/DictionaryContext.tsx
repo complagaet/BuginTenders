@@ -6,7 +6,8 @@ import React, {
     useState,
     useMemo,
     useLayoutEffect,
-    ReactNode, JSX,
+    ReactNode,
+    JSX,
 } from 'react';
 
 import ru from '@/src/locales/ru.json';
@@ -51,10 +52,7 @@ export default function DictionaryProvider({ children }: DictionaryProviderProps
 
     const t = (key: string): string | JSX.Element | JSX.Element[] => {
         const parts = key.split('.');
-        const raw = parts.reduce<any>(
-            (obj, part) => obj?.[part],
-            dictionaries[lang]
-        );
+        const raw = parts.reduce<any>((obj, part) => obj?.[part], dictionaries[lang]);
 
         if (typeof raw !== 'string') return key;
 
@@ -69,16 +67,9 @@ export default function DictionaryProvider({ children }: DictionaryProviderProps
         ));
     };
 
-    const value = useMemo(
-        () => ({ lang, setLang, langList, setAndSaveLang, t }),
-        [lang]
-    );
+    const value = useMemo(() => ({ lang, setLang, langList, setAndSaveLang, t }), [lang]);
 
-    return (
-        <DictionaryContext.Provider value={value}>
-            {children}
-        </DictionaryContext.Provider>
-    );
+    return <DictionaryContext.Provider value={value}>{children}</DictionaryContext.Provider>;
 }
 
 export function useDictionary(): DictionaryContextType {

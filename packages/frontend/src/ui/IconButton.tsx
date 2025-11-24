@@ -1,18 +1,18 @@
-'use client'
+'use client';
 
 import BobatronContainer from '@/src/ui/BobatronContainer';
 import Text from '@/src/ui/Text';
 import React, { useState } from 'react';
 
 type IconButtonProps = {
-    noOnClickReaction?: boolean
-    onClick?: () => any
-    noHover?: boolean
-    className?: string
-    children: React.ReactNode
-}
+    noOnClickReaction?: boolean;
+    onClick?: () => any;
+    noHover?: boolean;
+    className?: string;
+    children: React.ReactNode;
+};
 
-function IconButton({ noOnClickReaction, onClick, noHover, className, children } : IconButtonProps) {
+function IconButton({ noOnClickReaction, onClick, noHover, className, children }: IconButtonProps) {
     const [onClickReaction, setOnClickReaction] = useState(false);
 
     function onClickFunction(callback: (() => any) | undefined) {
@@ -42,12 +42,12 @@ function IconButton({ noOnClickReaction, onClick, noHover, className, children }
 }
 
 type IconButtonFrameProps = {
-    className?: string
-    children: React.ReactNode
+    className?: string;
+    children: React.ReactNode;
     color?: string;
-}
+};
 
-function IconButtonFrame({ className, children, color } : IconButtonFrameProps) {
+function IconButtonFrame({ className, children, color }: IconButtonFrameProps) {
     return (
         <BobatronContainer
             className={`w-[40px] h-[40px] rounded-[10px] flex items-center justify-center ${className}`}
@@ -59,9 +59,9 @@ function IconButtonFrame({ className, children, color } : IconButtonFrameProps) 
 }
 
 type IconButtonLabelProps = {
-    className?: string
-    children: React.ReactNode
-}
+    className?: string;
+    children: React.ReactNode;
+};
 
 function IconButtonLabel({ className, children }: IconButtonLabelProps) {
     return (

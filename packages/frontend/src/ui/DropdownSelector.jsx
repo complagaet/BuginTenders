@@ -4,7 +4,7 @@
     list={['kk', 'ru']}
 */
 
-'use client'
+'use client';
 
 import { Children, cloneElement, useEffect, useRef, useState } from 'react';
 

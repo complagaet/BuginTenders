@@ -8,7 +8,7 @@ type TextProps = {
 };
 
 const textStyles = {
-    h1: 'text-[36px] leading-[40px] font-bold mx-[5px]',
+    h1: 'text-[24px] leading-[26px] font-bold mx-[5px]',
     h2: 'font-bold text-[16px] leading-[18px]',
     p: 'text-[16px] leading-[18px]',
 };

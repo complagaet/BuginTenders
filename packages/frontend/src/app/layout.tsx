@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+import { inter } from '@/src/app/fonts';
 import './globals.css';
 import Header from '@/src/components/Header';
 import DictionaryProvider from '@/src/contexts/DictionaryContext';
+import SearchProvider from '@/src/contexts/SearchContext';
 
 export const metadata: Metadata = {
     title: 'Bügın’ Tenders',
@@ -14,16 +15,6 @@ export const metadata: Metadata = {
     },
 };
 
-const geistSans = Geist({
-    variable: '--font-geist-sans',
-    subsets: ['latin'],
-});
-
-const geistMono = Geist_Mono({
-    variable: '--font-geist-mono',
-    subsets: ['latin'],
-});
-
 export default function RootLayout({
     children,
 }: Readonly<{
@@ -32,10 +23,17 @@ export default function RootLayout({
     return (
         <html lang="ru">
             <DictionaryProvider>
-                <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#EBE7E5] p-[16px]`}>
-                    <Header />
-                    {children}
-                </body>
+                <SearchProvider>
+                    <body
+                        className={`
+                            ${inter.className}
+                            antialiased bg-[#EBE7E5] p-[16px] h-[100dvh] h-screen-fallback
+                        `}
+                    >
+                        <Header />
+                        {children}
+                    </body>
+                </SearchProvider>
             </DictionaryProvider>
         </html>
     );

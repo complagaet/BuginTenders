@@ -16,7 +16,8 @@ export default function DropdownSelector(props) {
     const gap = props.gap || 10;
     const gapMultiplier = 4;
 
-    const pushingDown = true;
+    const pushingDown = !(props.noPushingDown || false);
+    const underlay = !(props.noUnderlay || false);
 
     const selectedChildrenRef = useRef(null);
     const ref = useRef(null);
@@ -122,7 +123,7 @@ export default function DropdownSelector(props) {
                     transform: `translateX(-${gap}px)`,
                     ...underlayStyles,
                 }}
-                className={`absolute bg-[#fff6] opacity-0 rounded-[20px]`}
+                className={`absolute bg-[#fff6] opacity-0 rounded-[20px] ${underlay ? '' : '!hidden'}`}
             ></BobatronContainer>
 
             <div
@@ -155,7 +156,7 @@ export default function DropdownSelector(props) {
                 {childrenList.map((item, i) => {
                     if (props.list[i] !== props.list[selected]) {
                         return cloneElement(item, {
-                            elemId: i,
+                            i_id: i,
                             onClick: props.setter
                                 ? () => {
                                       setter(props.list[i]);

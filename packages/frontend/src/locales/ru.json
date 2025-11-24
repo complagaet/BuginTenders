@@ -7,11 +7,19 @@
 
     "search": {
         "mode": {
-            "products": "Товары"
+            "products": "Товары",
+            "suppliers": "Поставщики",
+            "announces": "Объявления"
         }
     },
 
     "placeholder": {
-        "product": "Батарея отопления..."
+        "search": {
+            "mode": {
+                "products": "Батарея отопления...",
+                "suppliers": "OOO \"Бнал\"...",
+                "announces": "Стол для столовой..."
+            }
+        }
     }
 }

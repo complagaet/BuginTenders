@@ -8,7 +8,8 @@
         "build": "concurrently \"yarn workspace @bugintenders/frontend build\"",
         "start": "",
         "format": "prettier --write .",
-        "clean": "rimraf --glob \"**/node_modules\" \"**/.next\""
+        "clean": "rimraf --glob \"**/node_modules\" \"**/.next\"",
+        "startBackend": "yarn workspace @bugintenders/backend start"
     },
     "workspaces": [
         "./packages/*"

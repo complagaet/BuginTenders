@@ -20,10 +20,10 @@ export function parseProductsHtml(html) {
             .map((_, th) => $(th).text().trim())
             .get();
 
-        const hasLotNumber = headers.some(h => h.includes('Номер лота'));
-        const hasName = headers.some(h => h === 'Наименование' || h.includes('Наименование'));
-        const hasPrice = headers.some(h => h.includes('Цена за ед.'));
-        const hasPlanned = headers.some(h => h.includes('Плановая сумма'));
+        const hasLotNumber = headers.some((h) => h.includes('Номер лота'));
+        const hasName = headers.some((h) => h === 'Наименование' || h.includes('Наименование'));
+        const hasPrice = headers.some((h) => h.includes('Цена за ед.'));
+        const hasPlanned = headers.some((h) => h.includes('Плановая сумма'));
 
         if (hasLotNumber && hasName && hasPrice && hasPlanned) {
             targetTable = table;
@@ -52,8 +52,9 @@ export function parseProductsHtml(html) {
             const lotCell = $(tds[1]);
             const lotLink = lotCell.find('a').first();
             const lotNumber =
-                (lotLink.text().replace(/\s+/g, ' ').trim() ||
-                    lotCell.text().replace(/\s+/g, ' ').trim()) || null;
+                lotLink.text().replace(/\s+/g, ' ').trim() ||
+                lotCell.text().replace(/\s+/g, ' ').trim() ||
+                null;
             const lotId = lotLink.attr('data-lot-id') || null;
 
             // 2: Заказчик
@@ -87,8 +88,7 @@ export function parseProductsHtml(html) {
 
             // 13: Пред. план (чекбокс)
             const prevPlanCell = $(tds[13]);
-            const prevPlan =
-                prevPlanCell.find('input[type="checkbox"][checked]').length > 0;
+            const prevPlan = prevPlanCell.find('input[type="checkbox"][checked]').length > 0;
 
             products.push({
                 index,

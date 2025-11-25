@@ -9,7 +9,7 @@ export default function Header() {
 
     return (
         <header
-            className={`fixed top-[16px] left-[16px] w-[calc(100%-(16px*2))] h-[40px] flex justify-between items-center`}
+            className={`fixed top-[16px] left-[16px] w-[calc(100%-(16px*2))] h-[40px] flex justify-between items-center z-10`}
         >
             <img src={`/bugintenders.svg`} alt={`Bügın’ Tenders`} />
 

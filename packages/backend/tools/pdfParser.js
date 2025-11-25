@@ -6,10 +6,7 @@ const require = createRequire(import.meta.url);
 
 // pdf-parse может вернуться либо как функция, либо как { default: fn }
 const pdfParseModule = require('pdf-parse');
-const pdfParse =
-    typeof pdfParseModule === 'function'
-        ? pdfParseModule
-        : pdfParseModule.default;
+const pdfParse = typeof pdfParseModule === 'function' ? pdfParseModule : pdfParseModule.default;
 
 if (typeof pdfParse !== 'function') {
     // чтобы сразу увидеть, если что-то совсем не так
@@ -69,9 +66,7 @@ export function extractTechSpecFields(text) {
         /Саны,\s*көлемі:\s*([^\n]+)/i,
     ]);
 
-    const quantity = quantityRaw
-        ? Number(quantityRaw.replace(',', '.')) || quantityRaw
-        : null;
+    const quantity = quantityRaw ? Number(quantityRaw.replace(',', '.')) || quantityRaw : null;
 
     const unit = extractField(text, [
         /Единица измерения:\s*([^\n]+)/i,

@@ -5,7 +5,7 @@ import { useDictionary } from '@/src/contexts/DictionaryContext';
 
 export default function SearchModeSelector() {
     const { t } = useDictionary();
-    const { searchMode, setSearchMode, searchModes } = useSearch();
+    const { searchMode, setSearchMode, searchModes, searchModesIconsAndColors } = useSearch();
 
     return (
         <DropdownSelector
@@ -17,8 +17,13 @@ export default function SearchModeSelector() {
             chevronPosition={'hidden'}
         >
             {searchModes.map((item) => (
-                <Button key={item} className={`max-w-fit`}>
-                    {t(`search.mode.${item}`)}
+                <Button
+                    key={item}
+                    className={`max-w-fit`}
+                    style={{ backgroundColor: searchModesIconsAndColors[item].color }}
+                >
+                    {searchModesIconsAndColors[item].icon}
+                    <p className={`hidden sm:block`}>{t(`search.mode.${item}`)}</p>
                 </Button>
             ))}
         </DropdownSelector>

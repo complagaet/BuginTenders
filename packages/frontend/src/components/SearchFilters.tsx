@@ -53,7 +53,7 @@ export default function SearchFilters() {
         >
             <div className="w-full min-h-[2px] bg-[#C6BDB4]"></div>
 
-            <div className="w-full flex gap-[10px]">
+            <div className="w-full flex flex-col md:flex-row gap-[10px]">
                 <div className={`w-full  flex flex-col gap-[8px]`}>
                     <Text as={`p`}>Регион участника</Text>
                     <Input className="w-full" />
@@ -64,7 +64,7 @@ export default function SearchFilters() {
                 </div>
             </div>
 
-            <div className="w-full flex gap-[10px]">
+            <div className="w-full flex flex-col md:flex-row gap-[10px]">
                 <div className={`w-full  flex flex-col gap-[8px]`}>
                     <Text as={`p`}>Регион участника</Text>
                     <Input className="w-full" />
@@ -75,7 +75,7 @@ export default function SearchFilters() {
                 </div>
             </div>
 
-            <div className="w-full flex gap-[10px]">
+            <div className="w-full flex flex-col md:flex-row gap-[10px]">
                 <div className={`w-full  flex flex-col gap-[8px]`}>
                     <Text as={`p`}>Регион участника</Text>
                     <Input className="w-full" />

@@ -1,9 +1,31 @@
 'use client';
 
-import React, { createContext, ReactNode, useContext, useEffect, useState } from 'react';
+import React, { createContext, JSX, ReactNode, useContext, useEffect, useState } from 'react';
+import { Container, Megaphone, ShoppingCart } from 'lucide-react';
 
 const searchModes = ['products', 'suppliers', 'announces'] as const;
 type searchMode = (typeof searchModes)[number];
+
+const searchModesIconsAndColors = {
+    products: {
+        color: '#CED0FF',
+        icon: <ShoppingCart size={20} />,
+    },
+    suppliers: {
+        color: '#9BE890',
+        icon: <Container size={20} />,
+    },
+    announces: {
+        color: '#F4ABFF',
+        icon: <Megaphone size={20} />,
+    },
+} satisfies Record<
+    searchMode,
+    {
+        color: string;
+        icon: JSX.Element;
+    }
+>;
 
 interface SearchContextType {
     showFilters: boolean;
@@ -15,6 +37,7 @@ interface SearchContextType {
     setSearchActive: React.Dispatch<React.SetStateAction<boolean>>;
     searchQuery: string;
     setSearchQuery: React.Dispatch<React.SetStateAction<string>>;
+    searchModesIconsAndColors: Record<searchMode, { color: string; icon: JSX.Element }>;
 }
 
 const SearchContext = createContext<SearchContextType | undefined>(undefined);
@@ -54,6 +77,7 @@ export default function SearchProvider({ children }: SearchProviderProps) {
                 setSearchActive,
                 searchQuery,
                 setSearchQuery,
+                searchModesIconsAndColors,
             }}
         >
             {children}

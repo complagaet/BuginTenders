@@ -17,7 +17,8 @@ export default function Button({
             {...rest}
             as={`button`}
             className={`
-                w-min-[300px] min-h-[40px] p-[10px] rounded-[10px]
+                w-min-[300px] min-h-[40px] pl-[10px] pr-[10px] rounded-[10px]
+                flex items-center gap-[8px]
                 text-[16px] leading-[18px]
                 transition-[background-color] duration-300 cursor-pointer
                 ${variant === 'outline' ? 'bg-white hover:bg-gray-100' : ''}

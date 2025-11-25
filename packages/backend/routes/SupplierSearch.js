@@ -152,9 +152,9 @@ router.get('/supplier-search/pipeline', async (req, res) => {
                     const techDoc =
                         documents.find((d) =>
                             (d.name || '').toLowerCase().includes('техническая')
-                        ) || documents.find((d) =>
-                            (d.name || '').toLowerCase().includes('techspec')
-                        ) || null;
+                        ) ||
+                        documents.find((d) => (d.name || '').toLowerCase().includes('techspec')) ||
+                        null;
 
                     let techSpecBlock = null;
 
@@ -170,8 +170,7 @@ router.get('/supplier-search/pipeline', async (req, res) => {
                         });
 
                         const files = parseTechSpecFilesHtml(filesHtml) || [];
-                        const techFile =
-                            files.find((f) => f.isTechSpec) || files[0] || null;
+                        const techFile = files.find((f) => f.isTechSpec) || files[0] || null;
 
                         if (techFile && techFile.fileUrl) {
                             const fileUrl = normalizeUrl(techFile.fileUrl);
@@ -189,7 +188,6 @@ router.get('/supplier-search/pipeline', async (req, res) => {
                                     null;
                                 characteristics = parsed.characteristics || null;
                                 lotDescription = parsed.lotDescription || null;
-                            
                             } catch (e) {
                                 console.error(
                                     `Error parsing techspec PDF for announce ${announceId}:`,
@@ -202,7 +200,7 @@ router.get('/supplier-search/pipeline', async (req, res) => {
                                 file_url: fileUrl,
                                 parsed_title: parsedTitle,
                                 characteristics: characteristics,
-                                lot_description: lotDescription
+                                lot_description: lotDescription,
                             };
                         }
                     }
@@ -262,6 +260,5 @@ router.get('/supplier-search/pipeline', async (req, res) => {
         });
     }
 });
-
 
 export default router;

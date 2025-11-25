@@ -19,9 +19,9 @@ export function parseWinnersHtml(html) {
             .map((_, th) => $(th).text().trim())
             .get();
 
-        const hasLotNumber = headers.some(h => h.includes('Номер лота'));
-        const hasLotName = headers.some(h => h.includes('Наименование лота'));
-        const hasWinner = headers.some(h => h.includes('Победитель'));
+        const hasLotNumber = headers.some((h) => h.includes('Номер лота'));
+        const hasLotName = headers.some((h) => h.includes('Наименование лота'));
+        const hasWinner = headers.some((h) => h.includes('Победитель'));
 
         if (hasLotNumber && hasLotName && hasWinner) {
             targetTable = table;
@@ -78,16 +78,13 @@ export function parseWinnersHtml(html) {
             const lotCell = $(tds[0]);
             const lotLink = lotCell.find('a.lot-links').first();
 
-            const lotNumber = lotLink.text().replace(/\s+/g, ' ').trim() ||
+            const lotNumber =
+                lotLink.text().replace(/\s+/g, ' ').trim() ||
                 lotCell.text().replace(/\s+/g, ' ').trim() ||
                 null;
 
-            const announceId = lotLink.data('anno')
-                ? String(lotLink.data('anno'))
-                : null;
-            const lotId = lotLink.data('id')
-                ? String(lotLink.data('id'))
-                : null;
+            const announceId = lotLink.data('anno') ? String(lotLink.data('anno')) : null;
+            const lotId = lotLink.data('id') ? String(lotLink.data('id')) : null;
 
             // 1: Наименование лота
             const lotName = $(tds[1]).text().replace(/\s+/g, ' ').trim() || null;
@@ -105,16 +102,16 @@ export function parseWinnersHtml(html) {
             const secondPlace = tds[5] ? parseSupplierCell(tds[5]) : null;
 
             rows.push({
-                announceId,     // id объявления (15683567)
-                lotId,          // внутренний id лота (38683709)
-                lotNumber,      // текстовый номер лота (75547080-ОИ7)
-                lotName,        // наименование лота
-                plannedAmount,  // плановая сумма лота
-                lotStatus,      // статус лота ("Закупка состоялась")
-                winner,         // { bin, name, url, raw } | null
-                secondPlace,    // { bin, name, url, raw } | null
+                announceId, // id объявления (15683567)
+                lotId, // внутренний id лота (38683709)
+                lotNumber, // текстовый номер лота (75547080-ОИ7)
+                lotName, // наименование лота
+                plannedAmount, // плановая сумма лота
+                lotStatus, // статус лота ("Закупка состоялась")
+                winner, // { bin, name, url, raw } | null
+                secondPlace, // { bin, name, url, raw } | null
             });
         });
-        // МОЖНО ДОБАВИТЬ В ПАРСЕР ЧТОБЫ УЧИТЫВАЛ ПАГИНАЦИЮ
+    // МОЖНО ДОБАВИТЬ В ПАРСЕР ЧТОБЫ УЧИТЫВАЛ ПАГИНАЦИЮ
     return rows;
 }

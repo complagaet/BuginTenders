@@ -29,8 +29,8 @@ export function parseDocumentsHtml(html) {
             .map((_, th) => $(th).text().trim())
             .get();
 
-        const hasName = headers.some(h => h.includes('Наименование документа'));
-        const hasFlag = headers.some(h => h.includes('Признак'));
+        const hasName = headers.some((h) => h.includes('Наименование документа'));
+        const hasFlag = headers.some((h) => h.includes('Признак'));
 
         if (hasName && hasFlag) {
             targetTable = table;
@@ -78,12 +78,12 @@ export function parseDocumentsHtml(html) {
             }
 
             docs.push({
-                name,            // "Техническая спецификация", "Перечень лотов" и т.п.
-                flagText,        // "Да" / "Нет"
-                flag,            // true/false
-                hasAction,       // есть ли кнопка "Перейти"
-                announceId,      // ID объявления (15683567)
-                documentTypeId,  // тип документа (263, 281, 266 ...), нужен для actionModalShowFiles
+                name, // "Техническая спецификация", "Перечень лотов" и т.п.
+                flagText, // "Да" / "Нет"
+                flag, // true/false
+                hasAction, // есть ли кнопка "Перейти"
+                announceId, // ID объявления (15683567)
+                documentTypeId, // тип документа (263, 281, 266 ...), нужен для actionModalShowFiles
             });
         });
 

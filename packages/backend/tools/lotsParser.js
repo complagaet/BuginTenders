@@ -13,9 +13,9 @@ export function parseLotsHtml(html) {
             .map((_, th) => $(th).text().trim())
             .get();
 
-        const hasLotNo = headers.some(h => h.includes('№ лота'));
-        const hasAnn   = headers.some(h => h.includes('Наименование объявления'));
-        const hasLotNm = headers.some(h => h.includes('Наименование') && h.includes('лота'));
+        const hasLotNo = headers.some((h) => h.includes('№ лота'));
+        const hasAnn = headers.some((h) => h.includes('Наименование объявления'));
+        const hasLotNm = headers.some((h) => h.includes('Наименование') && h.includes('лота'));
 
         if (hasLotNo && hasAnn && hasLotNm) {
             targetTable = table;
@@ -60,8 +60,7 @@ export function parseLotsHtml(html) {
             // 2: Наименование или описание лота
             const lotCell = $(tds[2]);
             const lotLink = lotCell.find('a').first();
-            const lotName =
-                (lotLink.text().trim() || lotCell.text().trim()) || null;
+            const lotName = lotLink.text().trim() || lotCell.text().trim() || null;
 
             // 3: Кол-во
             const quantity = $(tds[3]).text().replace(/\s+/g, ' ').trim() || null;
@@ -90,4 +89,3 @@ export function parseLotsHtml(html) {
 
     return rows;
 }
-

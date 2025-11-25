@@ -32,9 +32,9 @@ export function parseTechSpecFilesHtml(html) {
             .map((_, th) => $(th).text().trim())
             .get();
 
-        const hasLotNumber = headers.some(h => h.includes('Номер лота'));
-        const hasDocument = headers.some(h => h.includes('Документ'));
-        const hasAuthor = headers.some(h => h.includes('Автор'));
+        const hasLotNumber = headers.some((h) => h.includes('Номер лота'));
+        const hasDocument = headers.some((h) => h.includes('Документ'));
+        const hasAuthor = headers.some((h) => h.includes('Автор'));
 
         if (hasLotNumber && hasDocument && hasAuthor) {
             targetTable = table;
@@ -71,16 +71,16 @@ export function parseTechSpecFilesHtml(html) {
             const organization = $(tds[3]).text().replace(/\s+/g, ' ').trim() || null;
 
             // 4: Дата создания
-            const createdAt =
-                (tds[4] && $(tds[4]).text().replace(/\s+/g, ' ').trim()) || null;
+            const createdAt = (tds[4] && $(tds[4]).text().replace(/\s+/g, ' ').trim()) || null;
 
             // 5: Подпись (если есть колонка)
-            const signature =
-                (tds[5] && $(tds[5]).text().replace(/\s+/g, ' ').trim()) || null;
+            const signature = (tds[5] && $(tds[5]).text().replace(/\s+/g, ' ').trim()) || null;
 
             const isTechSpec =
                 (fileName && fileName.toLowerCase().includes('techspec')) ||
-                (fileName && fileName.toLowerCase().includes('техн') && fileName.toLowerCase().includes('спец'));
+                (fileName &&
+                    fileName.toLowerCase().includes('техн') &&
+                    fileName.toLowerCase().includes('спец'));
 
             docs.push({
                 lotNumber,
@@ -102,5 +102,5 @@ export function parseTechSpecFilesHtml(html) {
  */
 export function findFirstTechSpecFile(html) {
     const docs = parseTechSpecFilesHtml(html);
-    return docs.find(d => d.isTechSpec) || null;
+    return docs.find((d) => d.isTechSpec) || null;
 }

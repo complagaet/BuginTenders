@@ -40,3 +40,21 @@
         }
     }
 }
+
+.gradient-pulse {
+    background: linear-gradient(135deg, #ffffff, #ededed, #ffffff, #ededed);
+    background-size: 200% 200%;
+    animation: gradientShift 3s ease-in-out infinite;
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}

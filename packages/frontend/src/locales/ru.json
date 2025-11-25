@@ -10,7 +10,10 @@
             "products": "Товары",
             "suppliers": "Поставщики",
             "announces": "Объявления"
-        }
+        },
+        "notFound": "Ничего не найдено...",
+        "shortQuery": "В запросе должно быть минимум 3 символа",
+        "findSuppliers": "Найти поставщиков"
     },
 
     "placeholder": {

@@ -22,8 +22,8 @@ export default function Button({
                 text-[16px] leading-[18px]
                 transition-[background-color] duration-300 cursor-pointer
                 ${variant === 'outline' ? 'bg-white hover:bg-gray-100' : ''}
-                ${variant === 'primary' ? 'bg-blue-500 text-white' : ''}
-                ${variant === 'secondary' ? 'bg-gray-500 text-white' : ''}
+                ${variant === 'primary' ? 'bg-blue-500 hover:bg-blue-600 text-white' : ''}
+                ${variant === 'secondary' ? 'bg-gray-500 hover:bg-gray-600 text-white' : ''}
                 ${variant === 'destructive' ? 'bg-red-200 hover:bg-red-400' : ''}
                 ${className}
             `}

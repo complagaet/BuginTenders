@@ -7,7 +7,7 @@ export default function SearchChips() {
     const { searchMode, searchModesIconsAndColors } = useSearch();
 
     return (
-        <div className={`flex w-full gap-[5px]`}>
+        <div className={`flex gap-[5px]`}>
             <Chip
                 color={searchModesIconsAndColors[searchMode].color}
                 label={String(t(`search.mode.${searchMode}`))}

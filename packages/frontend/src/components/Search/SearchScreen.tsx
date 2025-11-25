@@ -5,17 +5,17 @@ import { useDictionary } from '@/src/contexts/DictionaryContext';
 import { lora } from '@/src/app/fonts';
 import Button from '@/src/ui/Button';
 import { useSearch } from '@/src/contexts/SearchContext';
-import SearchFilters from '@/src/components/SearchFilters';
-import SearchModeSelector from '@/src/components/SearchModeSelector';
-import SearchChips from '@/src/components/SearchChips';
+import SearchFilters from '@/src/components/Search/SearchFilters';
+import SearchModeSelector from '@/src/components/Search/SearchModeSelector';
+import SearchChips from '@/src/components/Search/SearchChips';
 import { useEffect, useRef } from 'react';
-import SearchBar from '@/src/components/SearchBar';
-import { ArrowUp, Funnel } from 'lucide-react';
+import SearchBar from '@/src/components/Search/SearchBar';
+import { ArrowLeft, ArrowUp, Funnel } from 'lucide-react';
 import TransitionSwitcher from '@/src/ui/TransitionSwitcher';
 
 export default function SearchScreen() {
     const { t } = useDictionary();
-    const { showFilters, setShowFilters, searchMode, searchActive } = useSearch();
+    const { showFilters, setShowFilters, searchMode, searchActive, setSearchActive } = useSearch();
 
     const searchHeaderParkingRef = useRef<HTMLDivElement>(null);
     const searchCenterParkingRef = useRef<HTMLDivElement>(null);
@@ -68,7 +68,6 @@ export default function SearchScreen() {
             timeout = setTimeout(() => {
                 if (!searchScreenContainerRef.current) return;
                 searchScreenContainerRef.current.style.display = 'none';
-                console.log(11);
             }, 300);
         }
 
@@ -85,6 +84,10 @@ export default function SearchScreen() {
                     fixed top-0 left-0 w-full flex pt-[calc(16px+40px+16px)] pl-[16px] pr-[16px] flex-col items-center gap-[16px] z-5
                     transition[opacity] h-fit duration-300 
                 `}
+                style={{
+                    background:
+                        'linear-gradient(0deg,rgba(235, 231, 229, 0) 0%, rgb(235, 231, 229) 100%)',
+                }}
             >
                 <div
                     className={`flex flex-col gap-[16px] w-full max-w-[620px] items-center transition-300`}
@@ -96,7 +99,12 @@ export default function SearchScreen() {
                         {t(`search.mode.${searchMode}`)}
                     </Text>
                     <div className={`w-full flex flex-col gap-[10px]`}>
-                        <SearchChips />
+                        <div className={`flex gap-[10px] w-full items-end justify-between`}>
+                            <Button variant={'outline'} onClick={() => setSearchActive(false)}>
+                                <ArrowLeft size={20} />
+                            </Button>
+                            <SearchChips />
+                        </div>
                         <div ref={searchHeaderParkingRef} className={`w-full h-[64px]`}></div>
                     </div>
                 </div>
@@ -124,7 +132,7 @@ export default function SearchScreen() {
                 <div
                     className={`
                     ${searchActive ? 'opacity-0' : 'opacity-100'}
-                    flex flex-col gap-[16px] w-full max-w-[620px] items-center duration-200
+                    flex flex-col gap-[16px] w-full max-w-[620px] items-center duration-300
                 `}
                 >
                     <Text as={`h1`} className={`${lora.className}`}>

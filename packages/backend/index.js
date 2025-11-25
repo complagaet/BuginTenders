@@ -1,12 +1,10 @@
 import 'dotenv/config';
-import fs from 'fs';
 
 import cors from 'cors';
 import express from 'express';
 import mongoose from 'mongoose';
 
 import checkToken from './middleware/checkToken.js';
-import isNotBanned from './middleware/isNotBanned.js';
 
 import AuthRoutes from './routes/Auth.js';
 import AdminRoutes from './routes/Admin.js';
@@ -16,6 +14,7 @@ import SupplierRoutes from './routes/SupplierSearch.js';
 
 const PORT = process.env.PORT || 3000;
 const DB_URL = process.env.DB_URL || 'mongodb://localhost:27017';
+const allowedOrigins = process.env.FRONTEND_ORIGINS.split(',');
 
 const app = express();
 

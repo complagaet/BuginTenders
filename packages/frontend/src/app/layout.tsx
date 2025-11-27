@@ -7,6 +7,7 @@ import SearchProvider from '@/src/contexts/SearchContext';
 import UIProvider from '@/src/contexts/UIContext';
 import React from 'react';
 import Modal from '@/src/components/Modal';
+import Overlay from '@/src/components/Overlay';
 
 export const metadata: Metadata = {
     title: 'Bügın’ Tenders',
@@ -55,6 +56,7 @@ export default function RootLayout({
                             <Header />
                             {children}
                             <Modal />
+                            <Overlay />
                         </body>
                     </SearchProvider>
                 </DictionaryProvider>

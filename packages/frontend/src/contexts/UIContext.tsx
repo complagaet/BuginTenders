@@ -16,10 +16,15 @@ export interface ModalState {
     content?: React.ReactNode;
 }
 
+export type logoTypes = 'bugintenders' | 'ertensabaq' | 'bugintenders+ertensabaq' | 'none';
+
 interface UIContextType {
+    page: string;
+    setPage: React.Dispatch<React.SetStateAction<string>>;
     showOverlay: boolean;
     setShowOverlay: Dispatch<SetStateAction<boolean>>;
-
+    overlayLogo: logoTypes;
+    setOverlayLogo: React.Dispatch<React.SetStateAction<logoTypes>>;
     modal: ModalState;
     setModal: Dispatch<SetStateAction<ModalState>>;
 }
@@ -39,15 +44,20 @@ interface UIProviderProps {
 }
 
 export default function UIProvider({ children }: UIProviderProps) {
-    const [showOverlay, setShowOverlay] = useState(false);
+    const [page, setPage] = useState('loading');
+    const [showOverlay, setShowOverlay] = useState<boolean>(true);
+    const [overlayLogo, setOverlayLogo] = useState<logoTypes>('none');
     const [modal, setModal] = useState<ModalState>({});
 
     return (
         <UIContext.Provider
             value={{
+                page,
+                setPage,
                 showOverlay,
                 setShowOverlay,
-
+                overlayLogo,
+                setOverlayLogo,
                 modal,
                 setModal,
             }}

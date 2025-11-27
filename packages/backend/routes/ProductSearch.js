@@ -1,7 +1,7 @@
 import 'dotenv/config';
 import express from 'express';
 import axios from 'axios';
-import { normalizeName } from "../tools/Normalizer.js";
+import { normalizeName } from '../tools/Normalizer.js';
 
 const router = express.Router();
 
@@ -62,29 +62,27 @@ router.get('/search', async (req, res) => {
     }
 });
 
-router.get("/normalize", async (req, res) => {
-  const { q } = req.query;
+router.get('/normalize', async (req, res) => {
+    const { q } = req.query;
 
-  if (!q) {
-    return res.status(400).json({ error: "Missing query ?q=" });
-  }
+    if (!q) {
+        return res.status(400).json({ error: 'Missing query ?q=' });
+    }
 
-  try {
-    const result = await normalizeName(q);
+    try {
+        const result = await normalizeName(q);
 
-    return res.json({
-      original: q,
-      result,
-    });
-
-  } catch (err) {
-    console.error("API Normalize error:", err.message || err);
-    return res.status(500).json({
-      error: "AI normalization failed",
-      details: err.message || "Unknown Gemini API error"
-    });
-  }
+        return res.json({
+            original: q,
+            result,
+        });
+    } catch (err) {
+        console.error('API Normalize error:', err.message || err);
+        return res.status(500).json({
+            error: 'AI normalization failed',
+            details: err.message || 'Unknown Gemini API error',
+        });
+    }
 });
-
 
 export default router;

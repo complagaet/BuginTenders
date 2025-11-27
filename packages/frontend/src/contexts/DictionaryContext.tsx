@@ -15,7 +15,7 @@ import kk from '@/src/locales/kk.json';
 
 const dictionaries = { ru, kk };
 
-type Lang = keyof typeof dictionaries; // "ru" | "kk" | "en"
+export type Lang = keyof typeof dictionaries; // "ru" | "kk" | "en"
 
 interface DictionaryContextType {
     lang: Lang;

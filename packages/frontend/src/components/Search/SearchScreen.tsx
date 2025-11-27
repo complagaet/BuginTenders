@@ -31,7 +31,6 @@ export default function SearchScreen() {
             const y = window.scrollY;
 
             if (y > threshold) {
-                console.log('11');
                 setScrolled(true);
             } else {
                 setScrolled(false);
@@ -82,13 +81,17 @@ export default function SearchScreen() {
     useEffect(() => {
         let timeout: ReturnType<typeof setTimeout> | undefined;
 
+        if (!searchScreenContainerRef.current) return;
+        const el = searchScreenContainerRef.current;
         if (!searchActive) {
-            if (!searchScreenContainerRef.current) return;
-            searchScreenContainerRef.current.style.display = 'flex';
-        } else {
+            el.style.display = 'flex';
             timeout = setTimeout(() => {
-                if (!searchScreenContainerRef.current) return;
-                searchScreenContainerRef.current.style.display = 'none';
+                el.style.opacity = '100%';
+            }, 10);
+        } else {
+            el.style.opacity = '0%';
+            timeout = setTimeout(() => {
+                el.style.display = 'none';
             }, 300);
         }
 
@@ -155,15 +158,10 @@ export default function SearchScreen() {
 
             <div
                 ref={searchScreenContainerRef}
-                className={`w-full h-full flex flex-col items-center justify-center`}
+                className={`fixed top-0 left-0 w-full h-screen-fallback flex flex-col items-center justify-center duration-300 p-[16px]`}
             >
-                <div
-                    className={`
-                    ${searchActive ? 'opacity-0' : 'opacity-100'}
-                    flex flex-col gap-[16px] w-full max-w-[620px] items-center duration-300
-                `}
-                >
-                    <Text as={`h1`} className={`${lora.className}`}>
+                <div className={`flex flex-col gap-[16px] w-full max-w-[620px] items-center`}>
+                    <Text as={`h1`} className={`${lora.className} text-center`}>
                         {t('text.welcome')}
                     </Text>
                     <Text

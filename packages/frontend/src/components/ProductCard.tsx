@@ -4,6 +4,7 @@ import Button from '@/src/ui/Button';
 import { Info } from 'lucide-react';
 import { Product } from '@/src/hooks/useProductsSearch';
 import { useDictionary } from '@/src/contexts/DictionaryContext';
+import useShowProductInfo from '@/src/hooks/useShowProductInfo';
 
 type ProductCardProps = {
     product: Product;
@@ -11,6 +12,7 @@ type ProductCardProps = {
 
 export default function ProductCard({ product }: ProductCardProps) {
     const { t } = useDictionary();
+    const { showProductInfo } = useShowProductInfo();
 
     return (
         <BobatronContainer
@@ -38,7 +40,11 @@ export default function ProductCard({ product }: ProductCardProps) {
                 </Text>
             </div>
             <div className={`flex gap-[10px]`}>
-                <Button variant={`custom`} className={`bg-[#CED0FF] hover:bg-[#B0B4FF]`}>
+                <Button
+                    variant={`custom`}
+                    className={`bg-[#CED0FF] hover:bg-[#B0B4FF]`}
+                    onClick={() => showProductInfo(product.attributes_dict)}
+                >
                     <Info size={20} />
                 </Button>
                 <Button

@@ -47,11 +47,11 @@ export default function Modal() {
         >
             <div
                 ref={contentRef}
-                className={`w-full h-full max-w-[500px] max-h-[400px] duration-300 transform 
+                className={`w-full h-full max-w-[800px] max-h-[600px] duration-300 transform 
                     ${isAnimating ? 'scale-100' : 'scale-110'}
                 `}
             >
-                <BobatronContainer className="bg-[#FBFBFB] flex flex-col w-full h-full rounded-[32px] p-[16px]">
+                <BobatronContainer className="bg-[#FBFBFB] flex flex-col w-full h-full rounded-[30px] p-[16px]">
                     {modal?.content}
                 </BobatronContainer>
             </div>

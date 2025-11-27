@@ -8,7 +8,7 @@ import { useSearch } from '@/src/contexts/SearchContext';
 import SearchFilters from '@/src/components/Search/SearchFilters';
 import SearchModeSelector from '@/src/components/Search/SearchModeSelector';
 import SearchChips from '@/src/components/Search/SearchChips';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import SearchBar from '@/src/components/Search/SearchBar';
 import { ArrowLeft, ArrowUp, Funnel } from 'lucide-react';
 import TransitionSwitcher from '@/src/ui/TransitionSwitcher';
@@ -17,10 +17,31 @@ export default function SearchScreen() {
     const { t } = useDictionary();
     const { showFilters, setShowFilters, searchMode, searchActive, setSearchActive } = useSearch();
 
+    const [scrolled, setScrolled] = useState<boolean>(false);
+
     const searchHeaderParkingRef = useRef<HTMLDivElement>(null);
     const searchCenterParkingRef = useRef<HTMLDivElement>(null);
     const searchBarContainerRef = useRef<HTMLDivElement>(null);
     const searchScreenContainerRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const threshold = 120;
+
+        const handleScroll = () => {
+            const y = window.scrollY;
+
+            if (y > threshold) {
+                console.log('11');
+                setScrolled(true);
+            } else {
+                setScrolled(false);
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
     useEffect(() => {
         const targetRef = searchActive ? searchHeaderParkingRef : searchCenterParkingRef;
@@ -81,7 +102,8 @@ export default function SearchScreen() {
             <div
                 className={`
                     ${searchActive ? 'opacity-100' : 'opacity-0'}
-                    fixed top-0 left-0 w-full flex pt-[calc(16px+40px+16px)] pl-[16px] pr-[16px] flex-col items-center gap-[16px] z-5
+                    ${scrolled ? 'pt-[calc(20px)]' : 'pt-[calc(16px+40px+16px)]'} 
+                    fixed top-0 left-0 w-full flex pl-[16px] pr-[16px] flex-col items-center gap-[16px] z-5
                     transition[opacity] h-fit duration-300 
                 `}
                 style={{
@@ -94,7 +116,11 @@ export default function SearchScreen() {
                 >
                     <Text
                         as={`h1`}
-                        className={`${lora.className} ${searchActive ? '' : 'translate-y-[-100px]'} duration-300`}
+                        className={`
+                            ${lora.className} 
+                            ${searchActive ? '' : 'translate-y-[-100px]'} 
+                            ${scrolled ? '!translate-y-[-100px]' : ''} 
+                            duration-300`}
                     >
                         {t(`search.mode.${searchMode}`)}
                     </Text>
@@ -115,9 +141,11 @@ export default function SearchScreen() {
                     // HACK: Костыль для великолепной iOS
                     if (searchActive) return;
 
-                    setTimeout(() => {
-                        window.scrollTo(0, 0);
-                    }, 100);
+                    for (let i = 1; i <= 3; i++) {
+                        setTimeout(() => {
+                            window.scrollTo(0, 0);
+                        }, 100 * i);
+                    }
                 }}
                 ref={searchBarContainerRef}
                 className={`fixed z-50`}

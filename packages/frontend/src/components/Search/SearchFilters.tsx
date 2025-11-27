@@ -2,9 +2,14 @@ import Input from '@/src/ui/Input';
 import Text from '@/src/ui/Text';
 import { useSearch } from '@/src/contexts/SearchContext';
 import { useEffect, useRef } from 'react';
+import BobatronContainer from '@/src/ui/BobatronContainer';
+import { lora } from '@/src/app/fonts';
+import { useDictionary } from '@/src/contexts/DictionaryContext';
+import { HeartCrack } from 'lucide-react';
 
 export default function SearchFilters() {
     const { showFilters } = useSearch();
+    const { t } = useDictionary();
 
     const ref = useRef<HTMLDivElement>(null);
 
@@ -53,17 +58,14 @@ export default function SearchFilters() {
         >
             <div className="w-full min-h-[2px] bg-[#C6BDB4]"></div>
 
-            <div className="w-full flex flex-col md:flex-row gap-[10px]">
-                <div className={`w-full  flex flex-col gap-[8px]`}>
-                    <Text as={`p`}>Регион участника</Text>
-                    <Input className="w-full" />
-                </div>
-                <div className={`w-full  flex flex-col gap-[8px]`}>
-                    <Text as={`p`}>Год регистрации</Text>
-                    <Input className="w-full" />
-                </div>
-            </div>
+            <BobatronContainer className="w-full h-fit flex items-center justify-center flex-col p-[16px] rounded-[16px] gap-[10px] bg-[#ffc0b6]">
+                <HeartCrack />
+                <Text as={`h2`} className={`${lora.className} text-center`}>
+                    {t('text.filtersUnavailable')}
+                </Text>
+            </BobatronContainer>
 
+            {/*
             <div className="w-full flex flex-col md:flex-row gap-[10px]">
                 <div className={`w-full  flex flex-col gap-[8px]`}>
                     <Text as={`p`}>Регион участника</Text>
@@ -74,17 +76,7 @@ export default function SearchFilters() {
                     <Input className="w-full" />
                 </div>
             </div>
-
-            <div className="w-full flex flex-col md:flex-row gap-[10px]">
-                <div className={`w-full  flex flex-col gap-[8px]`}>
-                    <Text as={`p`}>Регион участника</Text>
-                    <Input className="w-full" />
-                </div>
-                <div className={`w-full  flex flex-col gap-[8px]`}>
-                    <Text as={`p`}>Год регистрации</Text>
-                    <Input className="w-full" />
-                </div>
-            </div>
+            */}
         </div>
     );
 }

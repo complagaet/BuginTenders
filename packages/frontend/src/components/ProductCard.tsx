@@ -33,7 +33,9 @@ export default function ProductCard({ product }: ProductCardProps) {
                     />
                 </BobatronContainer>
                 <Text as={`h2`}>{product.name}</Text>
-                <Text as={`h2`}>{product.ntin_code}</Text>
+                <Text as={`p`}>
+                    <b>NTIN:</b> {product.ntin_code}
+                </Text>
             </div>
             <div className={`flex gap-[10px]`}>
                 <Button variant={`custom`} className={`bg-[#CED0FF] hover:bg-[#B0B4FF]`}>

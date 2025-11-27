@@ -1,10 +1,12 @@
 import { useSearch } from '@/src/contexts/SearchContext';
 import useProductsSearch from '@/src/hooks/useProductsSearch';
+import usePrompt from '@/src/hooks/usePrompt';
 
 export default function usePerformSearch() {
     const { setSearchLoading, setSearchActive, searchMode, searchQuery, setResultProducts } =
         useSearch();
     const { findProducts } = useProductsSearch();
+    const { showPrompt } = usePrompt();
 
     const performSearch = async () => {
         setSearchLoading(true);

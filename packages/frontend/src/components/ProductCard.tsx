@@ -15,7 +15,7 @@ export default function ProductCard({ product }: ProductCardProps) {
     return (
         <BobatronContainer
             className={`
-                flex min-w-[250px] w-[250px] max-w-[400px] min-h-[365px]
+                flex min-w-[250px] w-[250px] min-h-[365px]
                 bg-white grow-1 rounded-[30px] p-[16px] flex-col gap-[16px]
                 justify-between
             `}

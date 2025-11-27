@@ -11,7 +11,12 @@ export default function Header() {
         <header
             className={`fixed top-[16px] left-[16px] w-[calc(100%-(16px*2))] h-[40px] flex justify-between items-center z-10`}
         >
-            <img src={`/bugintenders.svg`} alt={`Bügın’ Tenders`} />
+            <img className={`hidden sm:block`} src={`/bugin-tenders.svg`} alt={`Bügın’ Tenders`} />
+            <img
+                className={`block sm:hidden`}
+                src={`/bugin-tenders-small.svg`}
+                alt={`Bügın’ Tenders`}
+            />
 
             <DropdownSelector setter={setAndSaveLang} selected={lang} list={langList}>
                 {langList.map((item) => (

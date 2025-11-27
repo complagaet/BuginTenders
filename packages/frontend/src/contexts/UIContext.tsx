@@ -1,10 +1,27 @@
 'use client';
 
-import React, { createContext, ReactNode, useContext, useState } from 'react';
+import React, {
+    createContext,
+    ReactNode,
+    useContext,
+    useState,
+    Dispatch,
+    SetStateAction,
+} from 'react';
+
+export interface ModalState {
+    visible?: boolean;
+    closable?: boolean;
+    zIndex?: number;
+    content?: React.ReactNode;
+}
 
 interface UIContextType {
     showOverlay: boolean;
-    setShowOverlay: React.Dispatch<React.SetStateAction<boolean>>;
+    setShowOverlay: Dispatch<SetStateAction<boolean>>;
+
+    modal: ModalState;
+    setModal: Dispatch<SetStateAction<ModalState>>;
 }
 
 const UIContext = createContext<UIContextType | undefined>(undefined);
@@ -23,12 +40,16 @@ interface UIProviderProps {
 
 export default function UIProvider({ children }: UIProviderProps) {
     const [showOverlay, setShowOverlay] = useState(false);
+    const [modal, setModal] = useState<ModalState>({});
 
     return (
         <UIContext.Provider
             value={{
                 showOverlay,
                 setShowOverlay,
+
+                modal,
+                setModal,
             }}
         >
             {children}

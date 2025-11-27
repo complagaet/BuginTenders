@@ -4,6 +4,9 @@ import './globals.css';
 import Header from '@/src/components/Header';
 import DictionaryProvider from '@/src/contexts/DictionaryContext';
 import SearchProvider from '@/src/contexts/SearchContext';
+import UIProvider from '@/src/contexts/UIContext';
+import React from 'react';
+import Modal from '@/src/components/Modal';
 
 export const metadata: Metadata = {
     title: 'Bügın’ Tenders',
@@ -39,20 +42,23 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="ru">
-            <DictionaryProvider>
-                <SearchProvider>
-                    <body
-                        className={`
-                            ${inter.className}
-                            antialiased bg-[#EBE7E5] p-[16px] h-[100dvh] h-screen-fallback relative
-                        `}
-                    >
-                        <Header />
-                        {children}
-                    </body>
-                </SearchProvider>
-            </DictionaryProvider>
+        <html lang="kk">
+            <UIProvider>
+                <DictionaryProvider>
+                    <SearchProvider>
+                        <body
+                            className={`
+                                ${inter.className}
+                                antialiased bg-[#EBE7E5] p-[16px] h-[100dvh] h-screen-fallback relative
+                            `}
+                        >
+                            <Header />
+                            {children}
+                            <Modal />
+                        </body>
+                    </SearchProvider>
+                </DictionaryProvider>
+            </UIProvider>
         </html>
     );
 }

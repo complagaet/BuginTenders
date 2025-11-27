@@ -23,7 +23,7 @@ export default function SearchModeSelector() {
                     style={{ backgroundColor: searchModesIconsAndColors[item].color }}
                 >
                     {searchModesIconsAndColors[item].icon}
-                    <p className={`hidden sm:block`}>{t(`search.mode.${item}`)}</p>
+                    <p>{t(`search.mode.${item}`)}</p>
                 </Button>
             ))}
         </DropdownSelector>

@@ -68,7 +68,7 @@ interface SearchProviderProps {
 
 export default function SearchProvider({ children }: SearchProviderProps) {
     const [showFilters, setShowFilters] = useState<boolean>(false);
-    const [searchMode, setSearchMode] = useState<searchMode>('products');
+    const [searchMode, setSearchMode] = useState<searchMode>('announces');
     const [searchActive, setSearchActive] = useState<boolean>(false);
     const [searchLoading, setSearchLoading] = useState<boolean>(false);
     const [searchQuery, setSearchQuery] = useState<string>('');

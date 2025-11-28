@@ -26,7 +26,7 @@ export default function SupplierCard({ supplier }: SupplierCardProps) {
     return (
         <BobatronContainer className="flex flex-col bg-white p-[16px] w-[400px] gap-[16px] rounded-[30px]">
             <div className="flex items-center gap-[10px]">
-                <BobatronContainer className="bg-[#9BE890] w-[40px] h-[40px] flex items-center justify-center rounded-[10px]">
+                <BobatronContainer className="bg-[#9BE890] min-w-[40px] h-[40px] flex items-center justify-center rounded-[10px]">
                     <ShieldCheck size={20} />
                 </BobatronContainer>
                 <Text as="h2">{supplier.name}</Text>

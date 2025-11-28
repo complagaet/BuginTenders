@@ -1,6 +1,9 @@
 # Bügın’ Tenders
 
-Описание здесь
+Найдите товары, надёжных поставщиков, честные цены и актуальные объявления — всё в одном умном поиске.
+
+![Main page](https://raw.githubusercontent.com/complagaet/BuginTenders/refs/heads/main/screenshots/1.png)
+![Main page](https://raw.githubusercontent.com/complagaet/BuginTenders/refs/heads/main/screenshots/2.png)
 
 ## Launch
 
@@ -29,6 +32,15 @@ DB_URL=mongodb+srv://...
 JWT_SECRET=super-secret-key
 JWT_LIFETIME=15d
 FRONTEND_ORIGINS=http://localhost:3000,http://192.168.31.27:3000...
+GEMINI_API_KEY=super-secret-key
+```
+
+`DB_URL, JWT_SECRET, JWT_LIFETIME` оставлены на будущее. В проекте реализована простая система учетных записей, но она не используется.
+
+**`packages/frontend/.env`**
+
+```dotenv
+NEXT_PUBLIC_API_URL=http://192.168.31.27:3333
 ```
 
 ## Development

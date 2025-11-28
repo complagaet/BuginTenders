@@ -23,9 +23,7 @@ export function parseSuppliersHtml(html) {
         const name = rawName.replace(/\s+/g, ' '); // нормализуем пробелы
 
         const href = nameAnchor.attr('href') || null;
-        const profileUrl = href
-            ? new URL(href, GZ_BASE).toString()
-            : null;
+        const profileUrl = href ? new URL(href, GZ_BASE).toString() : null;
 
         const bin = $(tds[2]).text().trim() || null;
         const iin = $(tds[3]).text().trim() || null;

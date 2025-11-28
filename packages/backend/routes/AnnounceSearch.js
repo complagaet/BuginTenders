@@ -26,15 +26,10 @@ function filterAnnouncesLocally(announces, query) {
         if (announceId && a.announceId !== Number(announceId)) return false;
         if (announceNumber && a.announceNumber !== announceNumber) return false;
 
-        if (
-            organizer &&
-            !a.organizer?.toLowerCase().includes(String(organizer).toLowerCase())
-        ) return false;
+        if (organizer && !a.organizer?.toLowerCase().includes(String(organizer).toLowerCase()))
+            return false;
 
-        if (
-            status &&
-            !a.status?.toLowerCase().includes(String(status).toLowerCase())
-        ) return false;
+        if (status && !a.status?.toLowerCase().includes(String(status).toLowerCase())) return false;
 
         if (startDate && a.startDate !== startDate) return false;
         if (endDate && a.endDate !== endDate) return false;

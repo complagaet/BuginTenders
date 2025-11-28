@@ -1,10 +1,11 @@
 import Text from '@/src/ui/Text';
 import Button from '@/src/ui/Button';
-import { FileDown, Package } from 'lucide-react';
+import { FileDown, Package, ShieldCheck } from 'lucide-react';
 import BobatronContainer from '@/src/ui/BobatronContainer';
 import { Lot } from '@/src/components/SupplierSearch/SupplierSearchResults';
 import React from 'react';
 import { useDictionary } from '@/src/contexts/DictionaryContext';
+import useRnuCheckModal from '@/src/hooks/useRnuCheckModal';
 
 interface SupplierLotCard {
     lot: Lot;
@@ -12,6 +13,7 @@ interface SupplierLotCard {
 
 export default function SupplierLotCard({ lot }: SupplierLotCard) {
     const { t } = useDictionary();
+    const { showRnuCheckModal } = useRnuCheckModal();
 
     return (
         <BobatronContainer className="flex flex-col bg-white p-[16px] w-[400px] grow-1 gap-[16px] rounded-[30px]">
@@ -41,11 +43,22 @@ export default function SupplierLotCard({ lot }: SupplierLotCard) {
 
             <div className={`w-full flex flex-col gap-[10px]`}>
                 <BobatronContainer
-                    className={`flex flex-col gap-[4px] bg-[#9BE890] p-[10px] rounded-[10px]`}
+                    className={`flex flex-col gap-[4px] ${lot.winner?.name ? 'bg-[#9BE890]' : 'bg-[#ffc0b6]'} p-[10px] rounded-[10px]`}
                 >
                     <Text as={`h2`}>{t('text.winner')}</Text>
                     <Text as={`p`}>{lot.winner?.name || t('text.error')}</Text>
                 </BobatronContainer>
+
+                {lot.winner?.bin_iin_id && (
+                    <Button
+                        variant={`custom`}
+                        className={`bg-[#FFD47A] hover:bg-[#ffc449] w-full`}
+                        onClick={() => showRnuCheckModal(lot.winner?.bin_iin_id)}
+                    >
+                        <ShieldCheck size={20} />
+                        {t('rnu.checkSupplier')}
+                    </Button>
+                )}
 
                 {lot.tech_spec?.file_url && (
                     <a href={lot.tech_spec.file_url} target="_blank">

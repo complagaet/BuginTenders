@@ -4,15 +4,17 @@ interface TransitionSwitcherProps {
     trigger: any;
     children: ReactNode;
     className?: string;
+    duration?: number;
 }
 
 export default function TransitionSwitcher({
     trigger,
     children,
     className = '',
+    duration = 300,
 }: TransitionSwitcherProps) {
     const [currentChildren, setCurrentChildren] = useState<ReactNode>(children);
-    const [isAnimating, setIsAnimating] = useState(false);
+    const [animating, setAnimating] = useState(false);
 
     const prevTrigger = useRef(trigger);
 
@@ -20,21 +22,23 @@ export default function TransitionSwitcher({
         if (prevTrigger.current === trigger) return;
 
         prevTrigger.current = trigger;
-        setIsAnimating(true);
+        setAnimating(true);
 
         const timeout = setTimeout(() => {
             setCurrentChildren(children);
-            setIsAnimating(false);
-        }, 300);
+            setAnimating(false);
+        }, duration);
 
         return () => clearTimeout(timeout);
-    }, [trigger, children]);
+    }, [trigger]);
 
     return (
         <div
-            className={`flex w-fit h-fit duration-300 ${
-                isAnimating ? 'scale-75 opacity-0 blur-xl' : ''
-            } ${className}`}
+            className={`
+                flex w-fit h-fit transition-all duration-${duration}
+                ${animating ? 'scale-75 opacity-0 blur-xl' : 'scale-100 opacity-100 blur-0'}
+                ${className}
+            `}
         >
             {currentChildren}
         </div>

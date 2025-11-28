@@ -21,7 +21,7 @@ export interface Lot {
     lot_number: string;
     status: string;
     customer: { name: string };
-    winner: { name: string };
+    winner: { name: string; bin_iin_id: string };
     items: { name: string; count: number; unit: string; unit_price: number; total_price: number }[];
     tech_spec: { file_url: string };
 }
@@ -31,7 +31,6 @@ export default function SupplierSearchResults({ name, category }: SupplierSearch
 
     const [loading, setLoading] = useState(true);
     const [results, setResults] = useState<Lot[]>([]);
-    const [query, setQuery] = useState('');
 
     useEffect(() => {
         async function fetchPipeline() {
@@ -41,7 +40,6 @@ export default function SupplierSearchResults({ name, category }: SupplierSearch
                     `/api/supplier-search/pipeline?q=${encodeURIComponent(category)}`
                 );
 
-                setQuery(data.query);
                 setResults(data.results || []);
             } catch (err) {
                 console.error(err);

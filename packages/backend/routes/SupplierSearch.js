@@ -262,20 +262,11 @@ router.get('/supplier-search/pipeline', async (req, res) => {
     }
 });
 
-// GET /suppliers/search 
+// GET /suppliers/search
 
 router.get('/suppliers/search', async (req, res) => {
     try {
-        const {
-            name,
-            kato,
-            year,
-            country,
-            type,
-            attribute,
-            page = 1,
-            perPage = 50,
-        } = req.query;
+        const { name, kato, year, country, type, attribute, page = 1, perPage = 50 } = req.query;
 
         const params = new URLSearchParams();
 
@@ -290,16 +281,22 @@ router.get('/suppliers/search', async (req, res) => {
         const yearsArr = Array.isArray(year)
             ? year
             : year
-            ? String(year).split(',').map((y) => y.trim()).filter(Boolean)
-            : [];
+              ? String(year)
+                    .split(',')
+                    .map((y) => y.trim())
+                    .filter(Boolean)
+              : [];
         yearsArr.forEach((y) => params.append('filter[year][]', y));
 
         // Страна резидентства (filter[country][])
         const countriesArr = Array.isArray(country)
             ? country
             : country
-            ? String(country).split(',').map((c) => c.trim()).filter(Boolean)
-            : [];
+              ? String(country)
+                    .split(',')
+                    .map((c) => c.trim())
+                    .filter(Boolean)
+              : [];
         countriesArr.forEach((c) => params.append('filter[country][]', c));
 
         // Регион участника (filter[kato])
@@ -311,8 +308,11 @@ router.get('/suppliers/search', async (req, res) => {
         const typesArr = Array.isArray(type)
             ? type
             : type
-            ? String(type).split(',').map((t) => t.trim()).filter(Boolean)
-            : [];
+              ? String(type)
+                    .split(',')
+                    .map((t) => t.trim())
+                    .filter(Boolean)
+              : [];
         typesArr.forEach((t) => params.append('filter[type][]', t));
 
         // Признак субъекта заказчика — filter[attribute]
@@ -358,6 +358,5 @@ router.get('/suppliers/search', async (req, res) => {
         });
     }
 });
-
 
 export default router;

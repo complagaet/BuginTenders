@@ -5,6 +5,8 @@ import { useUI } from '@/src/contexts/UIContext';
 import { useSearchParams } from 'next/navigation';
 import SupplierSearchResults from '@/src/components/SupplierSearch/SupplierSearchResults';
 
+export const dynamic = 'force-dynamic';
+
 export default function Home() {
     const { setShowOverlay, setOverlayLogo } = useUI();
 

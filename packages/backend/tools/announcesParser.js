@@ -48,7 +48,7 @@ export function parseAnnouncesHtml(html) {
         const orgText = $nameCell.find('small').text().replace(/\s+/g, ' ').trim();
         if (orgText) {
             const mOrg = orgText.match(/Организатор:\s*(.+)$/i);
-            organizer = (mOrg && mOrg[1]) ? mOrg[1].trim() : orgText;
+            organizer = mOrg && mOrg[1] ? mOrg[1].trim() : orgText;
         }
 
         // ----- Остальные колонки -----
@@ -75,18 +75,18 @@ export function parseAnnouncesHtml(html) {
         const status = $(tds[6]).text().replace(/\s+/g, ' ').trim() || null;
 
         rows.push({
-            announceId,        // 15758600
-            announceNumber,    // "15758600-1"
-            lotsCount,         // 2
-            name,              // текст ссылки
-            organizer,         // "ГУ \"...\""
-            method,            // "Запрос ценовых предложений" и т.п.
-            startDate,         // "20.02.2025 10:00"
-            endDate,           // "25.02.2025 18:00"
-            amountRaw,         // "1 234 567,00"
-            amountValue,       // 1234567.00 (number) или null
-            status,            // "Прием заявок" / "Закупка состоялась" и т.д.
-            href,              // относительная ссылка вида "/ru/announce/index/15758600"
+            announceId, // 15758600
+            announceNumber, // "15758600-1"
+            lotsCount, // 2
+            name, // текст ссылки
+            organizer, // "ГУ \"...\""
+            method, // "Запрос ценовых предложений" и т.п.
+            startDate, // "20.02.2025 10:00"
+            endDate, // "25.02.2025 18:00"
+            amountRaw, // "1 234 567,00"
+            amountValue, // 1234567.00 (number) или null
+            status, // "Прием заявок" / "Закупка состоялась" и т.д.
+            href, // относительная ссылка вида "/ru/announce/index/15758600"
         });
     });
 

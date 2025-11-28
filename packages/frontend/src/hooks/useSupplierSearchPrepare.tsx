@@ -3,30 +3,29 @@ import { useDictionary } from '@/src/contexts/DictionaryContext';
 import Button from '@/src/ui/Button';
 import Text from '@/src/ui/Text';
 import React from 'react';
-import AttributesTable, { AttributesDict } from '@/src/components/AttributesTable';
-import { CircleX, Info } from 'lucide-react';
+import { CircleX, PackageSearch } from 'lucide-react';
 import BobatronContainer from '@/src/ui/BobatronContainer';
-import HeightWrapper from '@/src/ui/HeightWrapper';
+import SupplierSearchPrepare from '@/src/components/SupplierSearch/SupplierSearchPrepare';
 
-export default function useShowProductInfo() {
+export default function useSupplierSearchPrepare() {
     const { setModal } = useUI();
-    const { t, lang } = useDictionary();
+    const { t } = useDictionary();
 
-    function showProductInfo(attributesDict: AttributesDict) {
+    function showSupplierSearchPrepare(name: string) {
         setModal({
             visible: true,
-            closable: true,
+            closable: false,
             content: (
                 <div className="w-full h-full flex flex-col items-center gap-[16px]">
-                    <div className={`w-full flex items-center justify-between gap-[10px]`}>
+                    <div className={`w-full flex justify-between gap-[10px]`}>
                         <div className={`flex items-center gap-[10px]`}>
                             <BobatronContainer
-                                className={`bg-[#CED0FF] w-[40px] h-[40px] flex items-center justify-center rounded-[10px]`}
+                                className={`bg-[#9BE890] w-[40px] h-[40px] flex items-center justify-center rounded-[10px]`}
                             >
-                                <Info size={20} />
+                                <PackageSearch size={20} />
                             </BobatronContainer>
                             <Text as={`h2`} className={`hidden md:block`}>
-                                {t('text.productInfo')}
+                                {t('search.findSuppliers')}
                             </Text>
                         </div>
                         <Button
@@ -39,13 +38,11 @@ export default function useShowProductInfo() {
                             <CircleX size={20} />
                         </Button>
                     </div>
-                    <HeightWrapper>
-                        <AttributesTable attributes={attributesDict} lang={lang} />
-                    </HeightWrapper>
+                    <SupplierSearchPrepare name={name} />
                 </div>
             ),
         });
     }
 
-    return { showProductInfo };
+    return { showSupplierSearchPrepare };
 }

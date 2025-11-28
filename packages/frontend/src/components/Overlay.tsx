@@ -27,7 +27,10 @@ export default function Overlay() {
     }, [showOverlay]);
 
     useEffect(() => {
-        if (overlayLogo !== 'bugintenders+ertensabaq') return;
+        if (overlayLogo !== 'bugintenders+ertensabaq') {
+            setOverlayTransition(false);
+            return;
+        }
 
         setTimeout(() => {
             setOverlayTransition(true);

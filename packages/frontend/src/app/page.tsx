@@ -13,6 +13,10 @@ export default function Home() {
         setTimeout(() => {
             setShowOverlay(false);
         }, 3000);
+
+        setTimeout(() => {
+            setOverlayLogo('bugintenders');
+        }, 4000);
     }, []);
 
     return (

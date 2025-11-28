@@ -5,6 +5,7 @@ import { Info } from 'lucide-react';
 import { Product } from '@/src/hooks/useProductsSearch';
 import { useDictionary } from '@/src/contexts/DictionaryContext';
 import useShowProductInfo from '@/src/hooks/useShowProductInfo';
+import useSupplierSearchPrepare from '@/src/hooks/useSupplierSearchPrepare';
 
 type ProductCardProps = {
     product: Product;
@@ -13,6 +14,7 @@ type ProductCardProps = {
 export default function ProductCard({ product }: ProductCardProps) {
     const { t } = useDictionary();
     const { showProductInfo } = useShowProductInfo();
+    const { showSupplierSearchPrepare } = useSupplierSearchPrepare();
 
     return (
         <BobatronContainer
@@ -50,6 +52,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                 <Button
                     variant={`custom`}
                     className={`w-full justify-center bg-[#9BE890] hover:bg-[#80D674]`}
+                    onClick={() => showSupplierSearchPrepare(product.name)}
                 >
                     {t('search.findSuppliers')}
                 </Button>

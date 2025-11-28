@@ -7,7 +7,17 @@
         "productInfo": "Информация о товаре",
         "property": "Свойство",
         "value": "Значение",
-        "close": "Закрыть"
+        "error": "Ошибка!",
+        "close": "Закрыть",
+        "cancel": "Отмена",
+        "home": "Домой",
+        "lot": "Лот",
+        "customer": "Заказчик",
+        "winner": "Победитель",
+        "item": "Предмет",
+        "unitPrice": "Цена за единицу",
+        "downloadTechSpec": "Скачать тех. спецификацию",
+        "onlyCategorySupplierSearch": "Внимание! Сейчас поиск поставщиков работает только по категории товара. По названию искать пока нельзя."
     },
 
     "search": {
@@ -18,13 +28,20 @@
         },
         "notFound": "Ничего не найдено...",
         "shortQuery": "В запросе должно быть минимум 3 символа",
-        "findSuppliers": "Найти поставщиков"
+        "findSuppliers": "Найти поставщиков",
+        "supplierSearchPreparing": "Подготавливаем поиск поставщиков…",
+        "weFoundCategory": "Мы нашли подходящую категорию",
+        "originalQuery": "Исходный запрос",
+        "searchWillBeByCategory": "Поиск будет выполнен по категории",
+        "startSearch": "Начать поиск",
+        "searching": "Выполняем поиск…",
+        "noResultsForCategory": "К сожалению нет результатов для категории"
     },
 
     "placeholder": {
         "search": {
             "mode": {
-                "products": "Батарея отопления...",
+                "products": "Аккумулятор...",
                 "suppliers": "OOO \"Бнал\"...",
                 "announces": "Стол для столовой..."
             }

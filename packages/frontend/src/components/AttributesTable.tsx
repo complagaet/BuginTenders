@@ -18,7 +18,7 @@ interface AttributeItem {
     is_required_kgd: boolean;
 }
 
-interface AttributesDict {
+export interface AttributesDict {
     [key: string]: AttributeItem;
 }
 

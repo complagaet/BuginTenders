@@ -5,7 +5,7 @@ type LocalizedString = {
     ru: string;
 };
 
-type ProductAttribute = {
+export type ProductAttribute = {
     name: LocalizedString;
     value: LocalizedString;
     is_main: boolean;

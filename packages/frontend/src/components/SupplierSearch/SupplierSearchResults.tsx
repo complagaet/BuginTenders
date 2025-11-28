@@ -7,7 +7,7 @@ import Button from '@/src/ui/Button';
 import { HeartCrack } from 'lucide-react';
 import { get } from '@/src/lib/requests';
 import BobatronContainer from '@/src/ui/BobatronContainer';
-import SupplierLotCard from '@/src/components/SupplierSearch/SupplierLotCard';
+import SupplierLotCard from '@/src/components/Cards/SupplierLotCard';
 import { AnimatedRedirect } from '@/src/ui/AnimatedRedirect';
 import { useDictionary } from '@/src/contexts/DictionaryContext';
 
@@ -32,6 +32,8 @@ export default function SupplierSearchResults({ name, category }: SupplierSearch
     const [loading, setLoading] = useState(true);
     const [results, setResults] = useState<Lot[]>([]);
 
+    const [updateTrigger, setUpdateTrigger] = useState<boolean>(false);
+
     useEffect(() => {
         async function fetchPipeline() {
             setLoading(true);
@@ -49,7 +51,7 @@ export default function SupplierSearchResults({ name, category }: SupplierSearch
         }
 
         fetchPipeline();
-    }, [category]);
+    }, [category, updateTrigger]);
 
     if (loading) {
         return (
@@ -71,9 +73,19 @@ export default function SupplierSearchResults({ name, category }: SupplierSearch
                 <Text as="p" className={`text-center`}>
                     &#171;{category}&#187;
                 </Text>
-                <AnimatedRedirect href={'/'}>
-                    <Button>{t('text.home')}</Button>
-                </AnimatedRedirect>
+                <div className={`flex gap-[10px]`}>
+                    <AnimatedRedirect href={'/'}>
+                        <Button>{t('text.home')}</Button>
+                    </AnimatedRedirect>
+                    <Button
+                        variant={`primary`}
+                        onClick={() => {
+                            setUpdateTrigger((prev) => !prev);
+                        }}
+                    >
+                        {t('text.tryAgain')}
+                    </Button>
+                </div>
             </div>
         );
     }

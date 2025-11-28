@@ -28,7 +28,7 @@ export default function SupplierLotCard({ lot }: SupplierLotCard) {
                 </Text>
             </div>
 
-            <div className={`flex flex-col gap-[16px] h-full`}>
+            <div className={`flex flex-col gap-[10px] h-full`}>
                 <Text as={`p`}>
                     <b>{t('text.customer')}:</b> {lot.customer?.name}
                 </Text>

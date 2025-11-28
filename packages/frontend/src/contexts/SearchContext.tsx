@@ -3,6 +3,8 @@
 import React, { createContext, JSX, ReactNode, useContext, useEffect, useState } from 'react';
 import { Container, Megaphone, ShoppingCart } from 'lucide-react';
 import { Product } from '@/src/hooks/useProductsSearch';
+import { Announce } from '@/src/hooks/useAnnouncesSearch';
+import { Supplier } from '@/src/hooks/useSuppliersSearch';
 
 const searchModes = ['products', 'suppliers', 'announces'] as const;
 type searchMode = (typeof searchModes)[number];
@@ -44,6 +46,10 @@ interface SearchContextType {
 
     resultProducts: Product[];
     setResultProducts: React.Dispatch<React.SetStateAction<Product[]>>;
+    resultAnnounces: Announce[];
+    setResultAnnounces: React.Dispatch<React.SetStateAction<Announce[]>>;
+    resultSuppliers: Supplier[];
+    setResultSuppliers: React.Dispatch<React.SetStateAction<Supplier[]>>;
 }
 
 const SearchContext = createContext<SearchContextType | undefined>(undefined);
@@ -68,6 +74,8 @@ export default function SearchProvider({ children }: SearchProviderProps) {
     const [searchQuery, setSearchQuery] = useState<string>('');
 
     const [resultProducts, setResultProducts] = useState<Product[]>([]);
+    const [resultAnnounces, setResultAnnounces] = useState<Announce[]>([]);
+    const [resultSuppliers, setResultSuppliers] = useState<Supplier[]>([]);
 
     useEffect(() => {
         if (searchMode === 'products') setShowFilters(false);
@@ -88,8 +96,13 @@ export default function SearchProvider({ children }: SearchProviderProps) {
                 searchModesIconsAndColors,
                 searchLoading,
                 setSearchLoading,
+
                 resultProducts,
                 setResultProducts,
+                resultAnnounces,
+                setResultAnnounces,
+                resultSuppliers,
+                setResultSuppliers,
             }}
         >
             {children}

@@ -41,6 +41,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                     <b>NTIN:</b> {product.ntin_code}
                 </Text>
             </div>
+
             <div className={`flex gap-[10px]`}>
                 <Button
                     variant={`custom`}

@@ -2,14 +2,24 @@
 
 import { useSearch } from '@/src/contexts/SearchContext';
 import { useEffect, useRef, useState } from 'react';
-import ProductCard from '@/src/components/ProductCard';
+import ProductCard from '@/src/components/Cards/ProductCard';
 import TransitionSwitcher from '@/src/ui/TransitionSwitcher';
 import Text from '@/src/ui/Text';
 import { useDictionary } from '@/src/contexts/DictionaryContext';
 import { lora } from '@/src/app/fonts';
+import AnnounceCard from '@/src/components/Cards/AnnounceCard';
+import SupplierCard from '@/src/components/Cards/SupplierCard';
 
 export default function SearchResults() {
-    const { searchActive, searchLoading, searchMode, resultProducts, searchQuery } = useSearch();
+    const {
+        searchActive,
+        searchLoading,
+        searchMode,
+        resultProducts,
+        resultAnnounces,
+        resultSuppliers,
+        searchQuery,
+    } = useSearch();
     const { t } = useDictionary();
 
     const [showResults, setShowResults] = useState<boolean>(false);
@@ -38,13 +48,13 @@ export default function SearchResults() {
             ref={ref}
             className={`
                 ${showResults ? 'opacity-100' : 'opacity-0'} 
-                pt-[calc(228px)] w-full min-h-full justify-center
+                pt-[calc(228px)] pd-[16px] w-full min-h-full justify-center
                 duration-300
             `}
         >
             <TransitionSwitcher
                 trigger={`${searchLoading}${searchActive}`}
-                className={`w-full max-w-[1300px] h-full flex gap-[16px] flex-wrap`}
+                className={`w-full max-w-[1300px] h-full flex gap-[16px] flex-wrap justify-center`}
             >
                 {searchLoading && (
                     <div className={`w-full h-full flex items-center justify-center`}>
@@ -73,6 +83,44 @@ export default function SearchResults() {
                         {resultProducts.map((item, i) => (
                             <ProductCard key={i} product={item} />
                         ))}
+
+                        <div className={`w-full min-h-[64px]`}></div>
+                    </>
+                )}
+
+                {!searchLoading && searchQuery.length > 2 && searchMode === 'announces' && (
+                    <>
+                        {resultAnnounces.length === 0 && (
+                            <div className={`w-full h-full flex items-center justify-center`}>
+                                <Text as={`h1`} className={`${lora.className}`}>
+                                    {t('search.notFound')}
+                                </Text>
+                            </div>
+                        )}
+
+                        {resultAnnounces.map((item, i) => (
+                            <AnnounceCard key={i} announce={item} />
+                        ))}
+
+                        <div className={`w-full min-h-[64px]`}></div>
+                    </>
+                )}
+
+                {!searchLoading && searchQuery.length > 2 && searchMode === 'suppliers' && (
+                    <>
+                        {resultSuppliers.length === 0 && (
+                            <div className={`w-full h-full flex items-center justify-center`}>
+                                <Text as={`h1`} className={`${lora.className}`}>
+                                    {t('search.notFound')}
+                                </Text>
+                            </div>
+                        )}
+
+                        {resultSuppliers.map((item, i) => (
+                            <SupplierCard key={i} supplier={item} />
+                        ))}
+
+                        <div className={`w-full min-h-[64px]`}></div>
                     </>
                 )}
             </TransitionSwitcher>

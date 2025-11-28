@@ -29,7 +29,7 @@ export default function Home() {
         }, 1000);
 
         setTimeout(() => {
-            setOverlayLogo('bugintenders+ertensabaq');
+            setOverlayLogo('ertensabaq');
         }, 2000);
     }, []);
 

@@ -9,6 +9,7 @@ import { parseProductsHtml } from '../tools/productsParser.js';
 import { parseDocumentsHtml } from '../tools/documentsParser.js';
 import { parseTechSpecFilesHtml } from '../tools/techspecParser.js';
 import { fetchAndParseTechSpecPdf } from '../tools/pdfParser.js';
+import { parseSuppliersHtml } from '../tools/suppliersParser.js';
 
 const router = express.Router();
 const GZ_BASE = 'https://goszakup.gov.kz';
@@ -260,5 +261,103 @@ router.get('/supplier-search/pipeline', async (req, res) => {
         });
     }
 });
+
+// GET /suppliers/search 
+
+router.get('/suppliers/search', async (req, res) => {
+    try {
+        const {
+            name,
+            kato,
+            year,
+            country,
+            type,
+            attribute,
+            page = 1,
+            perPage = 50,
+        } = req.query;
+
+        const params = new URLSearchParams();
+
+        // ФИО/название/БИН/ИИН — то, что вводится в поле "Участник"
+        if (name) {
+            params.append('filter[name]', String(name));
+            // на портале одновременно передаётся и search, и smb / reset
+            params.append('search', '');
+        }
+
+        // Год регистрации (на портале: filter[year][])
+        const yearsArr = Array.isArray(year)
+            ? year
+            : year
+            ? String(year).split(',').map((y) => y.trim()).filter(Boolean)
+            : [];
+        yearsArr.forEach((y) => params.append('filter[year][]', y));
+
+        // Страна резидентства (filter[country][])
+        const countriesArr = Array.isArray(country)
+            ? country
+            : country
+            ? String(country).split(',').map((c) => c.trim()).filter(Boolean)
+            : [];
+        countriesArr.forEach((c) => params.append('filter[country][]', c));
+
+        // Регион участника (filter[kato])
+        if (kato) {
+            params.append('filter[kato]', String(kato));
+        }
+
+        // Признаки (Заказчик / Поставщик и т.д.) — filter[type][]
+        const typesArr = Array.isArray(type)
+            ? type
+            : type
+            ? String(type).split(',').map((t) => t.trim()).filter(Boolean)
+            : [];
+        typesArr.forEach((t) => params.append('filter[type][]', t));
+
+        // Признак субъекта заказчика — filter[attribute]
+        if (attribute) {
+            params.append('filter[attribute]', String(attribute));
+        }
+
+        // Пагинация
+        params.append('count_record', String(perPage)); // 10/20/50/100 и т.д.
+        params.append('page', String(page));
+
+        const url = `${GZ_BASE}/ru/registry/supplierreg?${params.toString()}`;
+
+        const { data: html } = await axios.get(url, {
+            headers: {
+                'User-Agent': 'Mozilla/5.0',
+                Accept: 'text/html,application/xhtml+xml',
+            },
+            timeout: 15000,
+        });
+
+        const { suppliers, total } = parseSuppliersHtml(html);
+
+        return res.status(200).json({
+            query: {
+                name: name || null,
+                kato: kato || null,
+                year: yearsArr,
+                country: countriesArr,
+                type: typesArr,
+                attribute: attribute || null,
+                page: Number(page),
+                perPage: Number(perPage),
+            },
+            total,
+            results: suppliers,
+        });
+    } catch (e) {
+        console.error('Error in /suppliers/search:', e?.message || e);
+        return res.status(500).json({
+            status: 'error',
+            message: 'Internal server error',
+        });
+    }
+});
+
 
 export default router;

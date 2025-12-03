@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/refs */
 /*
     setter={setAndSaveLang}
     selected={lang}

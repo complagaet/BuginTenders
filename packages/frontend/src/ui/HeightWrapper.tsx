@@ -16,6 +16,8 @@ export default function HeightWrapper({ children, className = '' }: HeightWrappe
         const el = ref.current;
         el.style.height = `${ref.current.offsetHeight}px`;
         el.style.maxHeight = `${ref.current.offsetHeight}px`;
+
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setReady(true);
     }, []);
 

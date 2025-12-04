@@ -6,12 +6,12 @@ type ChipProps = {
 export default function Chip({ label, color }: ChipProps) {
     return (
         <div
-            className={`flex items-center w-fit h-[16px] pl-[8px] pr-[8px] rounded-full`}
+            className={`flex items-center w-fit h-4 pl-2 pr-2 rounded-full`}
             style={{
                 backgroundColor: color || 'white',
             }}
         >
-            <p className={`text-[12px] leading-[12px]`}>{label}</p>
+            <p className={`text-[12px] leading-3`}>{label}</p>
         </div>
     );
 }

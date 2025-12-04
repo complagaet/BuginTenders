@@ -39,6 +39,7 @@ export default function SearchResults() {
             }, 400);
         } else {
             el.style.display = 'none';
+            // eslint-disable-next-line react-hooks/set-state-in-effect
             setShowResults(false);
         }
     }, [searchActive]);
@@ -54,7 +55,7 @@ export default function SearchResults() {
         >
             <TransitionSwitcher
                 trigger={`${searchLoading}${searchActive}`}
-                className={`w-full max-w-[1300px] h-full flex gap-[16px] flex-wrap justify-center`}
+                className={`w-full max-w-[1300px] h-full flex gap-4 flex-wrap justify-center`}
             >
                 {searchLoading && (
                     <div className={`w-full h-full flex items-center justify-center`}>
@@ -84,7 +85,7 @@ export default function SearchResults() {
                             <ProductCard key={i} product={item} />
                         ))}
 
-                        <div className={`w-full min-h-[64px]`}></div>
+                        <div className={`w-full min-h-16`}></div>
                     </>
                 )}
 
@@ -102,7 +103,7 @@ export default function SearchResults() {
                             <AnnounceCard key={i} announce={item} />
                         ))}
 
-                        <div className={`w-full min-h-[64px]`}></div>
+                        <div className={`w-full min-h-16`}></div>
                     </>
                 )}
 
@@ -120,7 +121,7 @@ export default function SearchResults() {
                             <SupplierCard key={i} supplier={item} />
                         ))}
 
-                        <div className={`w-full min-h-[64px]`}></div>
+                        <div className={`w-full min-h-16`}></div>
                     </>
                 )}
             </TransitionSwitcher>

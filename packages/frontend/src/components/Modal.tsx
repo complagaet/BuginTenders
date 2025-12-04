@@ -13,6 +13,7 @@ export default function Modal() {
 
     useEffect(() => {
         if (modal?.visible) {
+            // eslint-disable-next-line react-hooks/set-state-in-effect
             setIsVisible(true);
             setTimeout(() => setIsAnimating(true), 50);
         } else if (isVisible) {
@@ -20,7 +21,7 @@ export default function Modal() {
             const timeout = setTimeout(() => setIsVisible(false), 300);
             return () => clearTimeout(timeout);
         }
-    }, [modal]);
+    }, [isVisible, modal]);
 
     useEffect(() => {
         function handleClickOutside(event: MouseEvent) {

@@ -50,7 +50,7 @@ export default function AttributesTable({
                     </thead>
 
                     <tbody className="divide-y divide-gray-100">
-                        {entries.map(([key, attr], idx) => (
+                        {entries.map(([key, attr]) => (
                             <tr key={key} className="transition-colors hover:bg-gray-100">
                                 <td className="p-4 text-gray-800 font-medium text-sm">
                                     {attr.name[convertedLangCode]}

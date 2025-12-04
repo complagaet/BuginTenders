@@ -29,9 +29,9 @@ function IconButton({ noOnClickReaction, onClick, noHover, className, children }
     return (
         <button
             className={`
-                flex items-center gap-[8px] 
+                flex items-center gap-2 
                 ${!noHover ? 'duration-300 hover:scale-[1.1] hover:drop-shadow-xl' : ''} 
-                ${onClickReaction ? '!scale-[0.9]' : ''}
+                ${onClickReaction ? 'scale-[0.9]!' : ''}
                 cursor-pointer ${className}
             `}
             onClick={() => onClickFunction(onClick)}
@@ -50,7 +50,7 @@ type IconButtonFrameProps = {
 function IconButtonFrame({ className, children, color }: IconButtonFrameProps) {
     return (
         <BobatronContainer
-            className={`w-[40px] h-[40px] rounded-[10px] flex items-center justify-center ${className}`}
+            className={`w-10 h-10 rounded-[10px] flex items-center justify-center ${className}`}
             style={{ backgroundColor: color ? color : '' }}
         >
             {children}

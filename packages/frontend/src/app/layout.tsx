@@ -50,7 +50,7 @@ export default function RootLayout({
                         <body
                             className={`
                                 ${inter.className}
-                                antialiased bg-[#EBE7E5] p-[16px] h-[100dvh] h-screen-fallback relative
+                                antialiased bg-[#EBE7E5] p-4 h-dvh h-screen-fallback relative
                             `}
                         >
                             <Header />

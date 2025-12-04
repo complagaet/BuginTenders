@@ -16,7 +16,7 @@ export default function RnuCheckModalContent({ query }: ContentProps) {
 
     return (
         <TransitionSwitcher
-            className="w-full h-full flex flex-col items-center justify-center gap-[16px] max-w-[400px]"
+            className="w-full h-full flex flex-col items-center justify-center gap-4 max-w-[400px]"
             trigger={loading ? 'loading' : JSON.stringify(data)}
         >
             {loading && (

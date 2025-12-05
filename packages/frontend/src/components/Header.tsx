@@ -5,8 +5,6 @@ import IconButton, { IconButtonFrame, IconButtonLabel } from '@/src/ui/IconButto
 import { useDictionary } from '@/src/contexts/DictionaryContext';
 import { AnimatedRedirect } from '@/src/ui/AnimatedRedirect';
 
-import Image from 'next/image';
-
 export default function Header() {
     const { setAndSaveLang, lang, langList } = useDictionary();
 

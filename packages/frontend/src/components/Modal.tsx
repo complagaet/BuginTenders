@@ -41,7 +41,7 @@ export default function Modal() {
 
     return (
         <div
-            className={`fixed top-0 left-0 z-100 w-full h-screen-fallback bg-[#000000b5] flex items-center justify-center p-[20px] backdrop-blur-md duration-300 
+            className={`fixed top-0 left-0 z-100 w-full h-screen-fallback bg-[#000000b5] flex items-center justify-center p-5 backdrop-blur-md duration-300 
                 ${isAnimating ? 'opacity-100' : 'opacity-0'}
             `}
             style={{ zIndex: modal?.zIndex ?? 100 }}
@@ -52,7 +52,7 @@ export default function Modal() {
                     ${isAnimating ? 'scale-100' : 'scale-110'}
                 `}
             >
-                <BobatronContainer className="bg-[#FBFBFB] flex flex-col w-full h-full rounded-[30px] p-[16px]">
+                <BobatronContainer className="bg-[#FBFBFB] flex flex-col w-full h-full rounded-[30px] p-4">
                     {modal?.content}
                 </BobatronContainer>
             </div>

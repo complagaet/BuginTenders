@@ -31,7 +31,7 @@ export default function Button({
             onClick={() => onClickFunction(onClick)}
             as={`button`}
             className={`
-                min-w-[40px] min-h-[40px] pl-[10px] pr-[10px] rounded-[10px]
+                min-w-10 min-h-10 pl-2.5 pr-2.5 rounded-[10px]
                 flex items-center
                 text-[16px] leading-[18px]
                 transition-[background-color,height] duration-300 cursor-pointer
@@ -44,7 +44,7 @@ export default function Button({
         >
             <div
                 className={`
-                    flex w-fit h-fit gap-[8px] 
+                    flex w-fit h-fit gap-2 
                     transition-[scale] duration-300
                     ${onClickReaction ? 'scale-90' : ''}
                 `}
